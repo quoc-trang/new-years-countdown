@@ -1,27 +1,32 @@
 <script setup>
 defineProps({
   label: String,
+  number: Number,
 });
 </script>
+
 <template>
-  <div class="segment">
-    <div class="number-wrapper">
-      <span class="number">0</span>
+  <div class="text-center segment">
+    <div class="relative pt-10 overflow-hidden">
+      <transition>
+        <span
+          :key="number"
+          class="numbers text-green absolute top-0 left-[50%]"
+          >{{ number }}</span
+        >
+      </transition>
     </div>
+
     <span class="block pt-2 label">{{ label }}</span>
   </div>
 </template>
-<style scoped>
+<style>
 .segment {
-  @apply text-center w-[80px];
+  width: 80px;
 }
-.number-wrapper {
-  @apply relative pt-10 overflow-hidden;
-}
-.number {
+.numbers {
   transform: translateX(-50%);
   font-size: 32px;
-  @apply absolute top-0 left-[50%];
 }
 .label {
   font-size: 16px;
@@ -42,6 +47,6 @@ defineProps({
 }
 .v-enter-from,
 .v-leave-to {
-  /* opacity: 0; */
+  opacity: 0;
 }
 </style>
